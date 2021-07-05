@@ -133,7 +133,7 @@ export interface MarkedValuesProps {
   /** Array of marked dates. */
   marked?: Moment[] | Date[];
   /** String specifying the mark color (Optional). */
-  markColor?: SemanticCOLORS;
+  markColor?: string[];
 }
 
 export const MarkedValuesPropTypes = {
@@ -143,7 +143,7 @@ export const MarkedValuesPropTypes = {
     PropTypes.arrayOf(CustomPropTypes.dateObject),
   ]),
   /** String specifying the mark color (Optional). */
-  markColor: PropTypes.string,
+  markColor: PropTypes.arrayOf(PropTypes.string),
 };
 
 export interface DateRelatedProps {

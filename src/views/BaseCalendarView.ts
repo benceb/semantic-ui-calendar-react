@@ -21,7 +21,7 @@ export interface BaseCalendarViewProps {
   /** An array of cell positions to display as marked. */
   markedItemIndexes?: number[];
   /** An array of cell positions to display as marked. */
-  markColor?: SemanticCOLORS;
+  markColor?: string[];
   /** Moment date localization */
   localization?: string;
 }

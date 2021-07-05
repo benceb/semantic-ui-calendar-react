@@ -87,7 +87,7 @@ export interface MarkedValuesProps {
   /** Array of marked dates. */
   marked?: Moment[];
   /** String specifying the mark color (Optional). */
-  markColor?: SemanticCOLORS;
+  markColor?: string[];
 }
 
 export interface TimePickerProps {

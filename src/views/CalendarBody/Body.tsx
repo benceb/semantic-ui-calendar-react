@@ -33,7 +33,7 @@ interface BodyProps {
   /** Array of element indexes in `data` array that should be displayed as marked. */
   marked?: number[];
   /** The color of the mark that will be displayed on the calendar. */
-  markColor?: string;
+  markColor?: string[];
 }
 
 function Body(props: BodyProps) {
@@ -57,7 +57,7 @@ function Body(props: BodyProps) {
           hovered={isHovered(rowIndex, width, itemIndex, hovered)}
           disabled={isDisabled(rowIndex, width, itemIndex, disabled)}
           marked={isMarked(rowIndex, width, itemIndex, marked)}
-          markColor={markColor}
+          markColor={getColor(rowIndex, width, itemIndex, marked, markColor)}
           key={`${rowIndex * width + itemIndex}`}
           itemPosition={rowIndex * width + itemIndex}
           content={item}
@@ -156,6 +156,25 @@ function isMarked(rowIndex: number,
   }
 
   return false;
+}
+
+function getColor(rowIndex: number,
+                  rowWidth: number,
+                  colIndex: number,
+                  markedIndexes: number[],
+                  colors: string[]): string {
+  if (isNil(markedIndexes) || markedIndexes.length === 0) {
+    return "";
+  }
+  let i = -1;
+  for (const markedIndex of markedIndexes) {
+    if (rowIndex * rowWidth + colIndex === markedIndex) {
+      i = i + 1;
+      return colors[i];
+    }
+  }
+
+  return "";
 }
 
 export default Body;

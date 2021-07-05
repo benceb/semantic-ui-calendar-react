@@ -46,7 +46,7 @@ interface CellProps {
   /** Is cell marked. */
   marked?: boolean;
   /** Color of the mark. */
-  markColor?: any;
+  markColor?: string;
 }
 
 class Cell extends React.Component<CellProps, any> {
