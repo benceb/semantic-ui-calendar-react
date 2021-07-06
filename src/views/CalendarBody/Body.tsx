@@ -1,6 +1,6 @@
 import isNil from 'lodash/isNil';
 import isArray from 'lodash/isArray';
-
+import Moment from 'moment'
 import * as React from 'react';
 import { Table } from 'semantic-ui-react';
 
@@ -31,9 +31,7 @@ interface BodyProps {
   /** Array of element indexes in `data` array that should be displayed as disabled. */
   disabled?: number[];
   /** Array of element indexes in `data` array that should be displayed as marked. */
-  marked?: number[];
-  /** The color of the mark that will be displayed on the calendar. */
-  markColor?: string[];
+  markers?: object[];
 }
 
 function Body(props: BodyProps) {
@@ -45,8 +43,7 @@ function Body(props: BodyProps) {
     disabled,
     hovered,
     onCellHover,
-    marked,
-    markColor,
+    markers,
   } = props;
   const content = buildRows(data, width).map((row, rowIndex) => (
     <Table.Row key={`${rowIndex}${row[0]}`}>
@@ -56,8 +53,7 @@ function Body(props: BodyProps) {
           active={isActive(rowIndex, width, itemIndex, active)}
           hovered={isHovered(rowIndex, width, itemIndex, hovered)}
           disabled={isDisabled(rowIndex, width, itemIndex, disabled)}
-          marked={isMarked(rowIndex, width, itemIndex, marked)}
-          markColor={getColor(rowIndex, width, itemIndex, marked, markColor)}
+          {...getMarkerForCell(rowIndex, width, itemIndex, markers)}
           key={`${rowIndex * width + itemIndex}`}
           itemPosition={rowIndex * width + itemIndex}
           content={item}
@@ -141,40 +137,25 @@ function getCellStyle(width: BodyWidth): CellWidthStyle {
       break;
   }
 }
-
-function isMarked(rowIndex: number,
-                  rowWidth: number,
-                  colIndex: number,
-                  markedIndexes: number[]): boolean {
-  if (isNil(markedIndexes) || markedIndexes.length === 0) {
-    return false;
-  }
-  for (const markedIndex of markedIndexes) {
-    if (rowIndex * rowWidth + colIndex === markedIndex) {
-      return true;
-    }
-  }
-
-  return false;
+interface MarkedObject{
+  marked:boolean,
+  markColor:string
 }
-
-function getColor(rowIndex: number,
+function getMarkerForCell(rowIndex: number,
                   rowWidth: number,
                   colIndex: number,
-                  markedIndexes: number[],
-                  colors: string[]): string {
-  if (isNil(markedIndexes) || markedIndexes.length === 0) {
-    return '';
+                  markers:any[]): MarkedObject {
+  
+
+  if(isNil(markers) || markers.length === 0){
+    return {marked:false, markColor:''};
   }
-  let i = -1;
-  for (const markedIndex of markedIndexes) {
-    i = i + 1;
-    if (rowIndex * rowWidth + colIndex === markedIndex) {
-      return colors[i];
+  for (const mark of markers){
+    if (mark.indexes.includes(rowIndex * rowWidth + colIndex)){
+      return {marked:true, markColor:mark.color};
     }
   }
-
-  return '';
+  return {marked:false, markColor:''};
 }
 
 export default Body;

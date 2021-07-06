@@ -28,6 +28,11 @@ export const cellStyleWidth7: CellWidthStyle = {
   width: '14.285714%',
 };
 
+export interface MarkedObject{
+  marked:boolean,
+  markColor:any
+}
+
 interface CellProps {
   /** Position of a cell on the page. (Used by parent component) */
   itemPosition: number;
@@ -53,6 +58,7 @@ interface CellProps {
 
 class Cell extends React.Component<CellProps, any> {
   public render() {
+
     const {
       itemPosition,
       content,
@@ -64,12 +70,10 @@ class Cell extends React.Component<CellProps, any> {
       markColor,
       ...rest
     } = this.props;
-
     const cellStyle = {
       ...style,
       ...(hovered ? hoverCellStyles : {}),
     };
-
     return (
       <Table.Cell
         { ...rest }

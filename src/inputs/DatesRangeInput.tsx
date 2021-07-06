@@ -6,6 +6,7 @@ import {
   parseDatesRange,
   parseValue,
   parseArrayOrValue,
+  parseObjectArray,
   buildValue,
 } from './parse';
 
@@ -73,8 +74,7 @@ class DatesRangeInput extends BaseInput<DatesRangeInputProps, BaseInputState> {
       maxDate,
       minDate,
       closable,
-      marked,
-      markColor,
+      markers,
       localization,
       allowSameEndDate,
       ...rest
@@ -98,7 +98,7 @@ class DatesRangeInput extends BaseInput<DatesRangeInputProps, BaseInputState> {
       value,
       dateFormat,
       markColor,
-      marked,
+      markers,
       initialDate,
       localization,
       minDate,
@@ -113,7 +113,7 @@ class DatesRangeInput extends BaseInput<DatesRangeInputProps, BaseInputState> {
       end,
     } = parseDatesRange(value, dateFormat);
 
-    const markedParsed = parseArrayOrValue(marked, dateFormat, localization);
+    const markersParsed = parseObjectArray(markers, dateFormat, localization);
     const minDateParsed = parseValue(minDate, dateFormat, localization);
     const maxDateParsed = parseValue(maxDate, dateFormat, localization);
 
@@ -137,8 +137,7 @@ class DatesRangeInput extends BaseInput<DatesRangeInputProps, BaseInputState> {
         initializeWith={initializeWith}
         start={start}
         end={end}
-        marked={markedParsed}
-        markColor={markColor}
+        markers={markersParsed}
         minDate={parseValue(minDate, dateFormat, localization)}
         maxDate={parseValue(maxDate, dateFormat, localization)}
         localization={localization}

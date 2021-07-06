@@ -66,8 +66,7 @@ class DayPicker
       enable,
       minDate,
       maxDate,
-      marked,
-      markColor,
+      markers,
       localization,
       ...rest
     } = this.props;
@@ -89,8 +88,7 @@ class DayPicker
         currentHeadingValue={this.getCurrentDate()}
         disabledItemIndexes={this.getDisabledPositions()}
         activeItemIndex={this.getActiveCellPosition()}
-        markedItemIndexes={this.getMarkedPositions()}
-        markColor={markColor}
+        markers={this.getMarkersPositions()}
         localization={localization} />
     );
   }
@@ -152,17 +150,17 @@ class DayPicker
     return getDisabledDays(disable, maxDate, minDate, this.state.date, DAYS_ON_PAGE, enable);
   }
 
-  protected getMarkedPositions(): number[] {
+  protected getMarkersPositions(): object[] {
     /*
       Return position numbers of dates that should be displayed as marked
       (position in array returned by `this.buildCalendarValues`).
     */
     const {
-      marked,
+      markers,
     } = this.props;
 
-    if (marked) {
-      return getMarkedDays(marked, this.state.date, DAYS_ON_PAGE);
+    if (markers) {
+      return getMarkedDays(markers, this.state.date, DAYS_ON_PAGE);
     } else {
       return [];
     }

@@ -64,8 +64,7 @@ class DatesRangeView extends BaseCalendarView<DatesRangeViewProps, any> {
       onCellHover,
       onMount,
       inline,
-      markColor,
-      markedItemIndexes,
+      markers,
       localization,
       ...rest
     } = this.props;
@@ -94,8 +93,7 @@ class DatesRangeView extends BaseCalendarView<DatesRangeViewProps, any> {
           onCellClick={onValueClick}
           onCellHover={onCellHover}
           hovered={hoveredItemIndex}
-          markColor={markColor}
-          marked={markedItemIndexes}
+          markers={markers}
           active={getActive(start, end)}
           disabled={disabledItemIndexes} />
       </Calendar>

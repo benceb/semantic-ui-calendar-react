@@ -112,10 +112,10 @@ export function getDisabledDays(
 
 /** Return day positions that should be displayed as marked. */
 export function getMarkedDays(
-  marked: Moment[],
+  markers: Array<{dates: Moment[]; color:string;}>,
   currentDate: Moment,
-  daysOnPage: number): number[] {
-    if (marked.length === 0) {
+  daysOnPage: number): object[] {
+    if (markers.length === 0) {
       return [];
     }
     const allDates = buildDays(currentDate, daysOnPage);
@@ -132,13 +132,17 @@ export function getMarkedDays(
     for (let i = 0; i < fillTo; i++) {
       allDatesNumb[i] = 0;
     }
-
-    const markedIndexes = marked
-      .filter((date) => date.isSame(currentDate, 'month'))
-      .map((date) => date.date())
-      .map((date) => allDatesNumb.indexOf(date));
-
-    return markedIndexes.filter((index) => includes(activeDayPositions, index));
+    const markersWithIndexes = markers.map((mark) => {
+      return {
+        ...mark,
+        indexes: mark.dates
+        .filter((date) => date.isSame(currentDate, 'month'))
+        .map((date) => date.date())
+        .map((date) => allDatesNumb.indexOf(date))
+        // .filter((date) => includes(activeDayPositions, date))
+      }
+    });
+    return markersWithIndexes;
 }
 
 export function isNextPageAvailable(date: Moment, maxDate: Moment): boolean {

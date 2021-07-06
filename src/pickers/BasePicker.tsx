@@ -85,9 +85,7 @@ export interface MinMaxValueProps {
 
 export interface MarkedValuesProps {
   /** Array of marked dates. */
-  marked?: Moment[];
-  /** String specifying the mark color (Optional). */
-  markColor?: string[];
+  markers?: Array<{dates: Moment[]; color:SemanticCOLORS}>;
 }
 
 export interface TimePickerProps {

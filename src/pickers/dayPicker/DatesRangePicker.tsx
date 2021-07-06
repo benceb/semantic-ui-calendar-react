@@ -66,8 +66,7 @@ class DatesRangePicker
       end,
       minDate,
       maxDate,
-      marked,
-      markColor,
+      markers,
       localization,
       allowSameEndDate,
       ...rest
@@ -90,8 +89,7 @@ class DatesRangePicker
         currentHeadingValue={this.getCurrentDate()}
         currentRangeHeadingValue={this.getSelectedRange()}
         activeRange={this.getActiveCellsPositions()}
-        markedItemIndexes={this.getMarkedPositions()}
-        markColor={markColor}
+        markers={this.getMarkersPositions()}
         disabledItemIndexes={this.getDisabledPositions()}
         localization={localization}
       />
@@ -103,17 +101,17 @@ class DatesRangePicker
     return this.state.date.format('MMMM YYYY');
   }
 
-  protected getMarkedPositions(): number[] {
+  protected getMarkersPositions(): object[] {
     /*
       Return position numbers of dates that should be displayed as marked
       (position in array returned by `this.buildCalendarValues`).
     */
     const {
-      marked,
+      markers,
     } = this.props;
 
-    if (marked) {
-      return getMarkedDays(marked, this.state.date, DAYS_ON_PAGE);
+    if (markers) {
+      return getMarkedDays(markers, this.state.date, DAYS_ON_PAGE);
     } else {
       return [];
     }

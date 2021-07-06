@@ -52,6 +52,21 @@ export function parseArrayOrValue(data: ParseArrayOrValueData, dateFormat: strin
   return parsedValue && [parsedValue];
 }
 
+// type ParseObjectArray = object;
+
+export function parseObjectArray(data: object, dateFormat:string, localization:string ){
+  if (isArray(data)){
+
+    return data.map((item) => {
+      return{
+      ...item,
+      dates : parseArrayOrValue(item.dates, dateFormat, localization)
+    }
+    });
+  }
+  return []
+}
+
 interface DateParams {
   year?: number;
   month?: number;

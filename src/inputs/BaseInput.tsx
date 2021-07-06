@@ -131,19 +131,12 @@ export const BaseInputPropTypes = {
 
 export interface MarkedValuesProps {
   /** Array of marked dates. */
-  marked?: Moment[] | Date[];
-  /** String specifying the mark color (Optional). */
-  markColor?: string[];
+  markers?: Array<{dates: Date[] | Moment[]; color:SemanticCOLORS;}>;
 }
 
 export const MarkedValuesPropTypes = {
   /** Array of marked dates. */
-  marked: PropTypes.oneOfType([
-    PropTypes.arrayOf(CustomPropTypes.momentObj),
-    PropTypes.arrayOf(CustomPropTypes.dateObject),
-  ]),
-  /** String specifying the mark color (Optional). */
-  markColor: PropTypes.array,
+  markers: PropTypes.array,
 };
 
 export interface DateRelatedProps {

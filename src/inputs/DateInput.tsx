@@ -37,6 +37,7 @@ import {
   parseArrayOrValue,
   parseValue,
   dateValueToString,
+  parseObjectArray
 } from './parse';
 import {
   getDisabledMonths, getDisabledYears,
@@ -153,8 +154,7 @@ class DateInput extends BaseInput<DateInputProps, DateInputState> {
       preserveViewMode,
       startMode,
       closable,
-      markColor,
-      marked,
+      markers,
       localization,
       onChange,
       ...rest
@@ -202,8 +202,7 @@ class DateInput extends BaseInput<DateInputProps, DateInputState> {
       maxDate,
       enable,
       inline,
-      marked,
-      markColor,
+      markers,
       localization,
       tabIndex,
       pickerWidth,
@@ -228,7 +227,7 @@ class DateInput extends BaseInput<DateInputProps, DateInputState> {
       localization,
     };
     const disableParsed = parseArrayOrValue(disable, dateFormat, localization);
-    const markedParsed = parseArrayOrValue(marked, dateFormat, localization);
+    const markersParsed = parseObjectArray(markers, dateFormat, localization);
     const { mode } = this.state;
     if (mode === 'year') {
       return (
@@ -248,7 +247,7 @@ class DateInput extends BaseInput<DateInputProps, DateInputState> {
       );
     }
 
-    return <DayPicker {...pickerProps} disable={disableParsed} marked={markedParsed} markColor={markColor} />;
+    return <DayPicker {...pickerProps} disable={disableParsed} markers={markersParsed}/>;
   }
 
   private switchToNextModeUndelayed = (): void => {

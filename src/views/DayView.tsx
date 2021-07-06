@@ -38,8 +38,7 @@ class DayView extends BaseCalendarView<DayViewProps, any> {
       onCellHover,
       onMount,
       inline,
-      markedItemIndexes,
-      markColor,
+      markers,
       localization,
       ...rest
     } = this.props;
@@ -65,8 +64,7 @@ class DayView extends BaseCalendarView<DayViewProps, any> {
           onCellClick={onValueClick}
           active={activeItemIndex}
           disabled={disabledItemIndexes}
-          marked={markedItemIndexes}
-          markColor={markColor} />
+          markers={markers}/>
       </Calendar>
     );
   }

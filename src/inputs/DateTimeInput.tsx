@@ -35,6 +35,7 @@ import BaseInput, {
 import { tick } from '../lib';
 import {
   parseArrayOrValue,
+  parseObjectArray,
   parseValue,
   TIME_FORMAT,
   buildValue,
@@ -184,8 +185,7 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
       startMode,
       divider,
       closable,
-      markColor,
-      marked,
+      markers,
       localization,
       onChange,
       disableMinute,
@@ -250,8 +250,7 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
       minDate,
       maxDate,
       inline,
-      marked,
-      markColor,
+      markers,
       localization,
       tabIndex,
       pickerStyle,
@@ -277,7 +276,7 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
     };
     const disableParsed = parseArrayOrValue(disable, dateTimeFormat, localization);
     const { mode } = this.state;
-    const markedParsed = parseArrayOrValue(marked, dateTimeFormat, localization);
+    const markersParsed = parseObjectArray(markers, dateTimeFormat, localization);
     if (mode === 'year') {
       return (
         <YearPicker
@@ -299,8 +298,7 @@ class DateTimeInput extends BaseInput<DateTimeInputProps, DateTimeInputState> {
       return (
         <DayPicker
           {...pickerProps}
-          marked={markedParsed}
-          markColor={markColor}
+          markers={markersParsed}
           disable={disableParsed}
         />
       );
