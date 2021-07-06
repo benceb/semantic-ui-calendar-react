@@ -9,7 +9,9 @@ const hoverCellStyles = {
   outline: '1px solid #85b7d9',
   cursor: 'pointer',
 };
-
+import {
+  SemanticCOLORS,
+} from 'semantic-ui-react';
 export interface CellWidthStyle {
   width: string;
 }
@@ -46,7 +48,7 @@ interface CellProps {
   /** Is cell marked. */
   marked?: boolean;
   /** Color of the mark. */
-  markColor?: string;
+  markColor?: any;
 }
 
 class Cell extends React.Component<CellProps, any> {

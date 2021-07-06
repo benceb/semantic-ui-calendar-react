@@ -164,17 +164,17 @@ function getColor(rowIndex: number,
                   markedIndexes: number[],
                   colors: string[]): string {
   if (isNil(markedIndexes) || markedIndexes.length === 0) {
-    return "";
+    return '';
   }
   let i = -1;
   for (const markedIndex of markedIndexes) {
+    i = i + 1;
     if (rowIndex * rowWidth + colIndex === markedIndex) {
-      i = i + 1;
       return colors[i];
     }
   }
 
-  return "";
+  return '';
 }
 
 export default Body;

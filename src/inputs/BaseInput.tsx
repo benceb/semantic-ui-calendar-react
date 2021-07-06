@@ -143,7 +143,7 @@ export const MarkedValuesPropTypes = {
     PropTypes.arrayOf(CustomPropTypes.dateObject),
   ]),
   /** String specifying the mark color (Optional). */
-  markColor: PropTypes.arrayOf(PropTypes.string),
+  markColor: PropTypes.array,
 };
 
 export interface DateRelatedProps {
