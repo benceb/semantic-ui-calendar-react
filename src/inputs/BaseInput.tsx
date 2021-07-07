@@ -130,12 +130,12 @@ export const BaseInputPropTypes = {
 };
 
 export interface MarkedValuesProps {
-  /** Array of marked dates. */
+  /** Array of markers for cells on dates. */
   markers?: Array<{dates: Date[] | Moment[]; color:SemanticCOLORS;}>;
 }
 
 export const MarkedValuesPropTypes = {
-  /** Array of marked dates. */
+  /** Array of markers for cells on dates. */
   markers: PropTypes.array,
 };
 

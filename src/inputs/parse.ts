@@ -52,11 +52,11 @@ export function parseArrayOrValue(data: ParseArrayOrValueData, dateFormat: strin
   return parsedValue && [parsedValue];
 }
 
-// type ParseObjectArray = object;
-
+/*
+* Parse Array<{dates: Moment[] | Date[], ...}>
+*/
 export function parseObjectArray(data: object, dateFormat:string, localization:string ){
   if (isArray(data)){
-
     return data.map((item) => {
       return{
       ...item,

@@ -18,7 +18,7 @@ export interface BaseCalendarViewProps {
   hoveredItemIndex?: number;
   /** An array of cell positions to display as disabled. */
   disabledItemIndexes?: number[];
-  /** An array of cell positions to display as marked. */
+  /** An array of {dates: Date[] | Moment[], color: SemanticCOLORS, indexes:number[]. */
   markers?: object[];
   /** Moment date localization */
   localization?: string;

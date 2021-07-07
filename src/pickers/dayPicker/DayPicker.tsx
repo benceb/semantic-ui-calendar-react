@@ -152,8 +152,8 @@ class DayPicker
 
   protected getMarkersPositions(): object[] {
     /*
-      Return position numbers of dates that should be displayed as marked
-      (position in array returned by `this.buildCalendarValues`).
+      Return markers object array with indexes that specify the position number 
+      of dates
     */
     const {
       markers,

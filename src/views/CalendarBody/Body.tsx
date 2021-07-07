@@ -137,22 +137,19 @@ function getCellStyle(width: BodyWidth): CellWidthStyle {
       break;
   }
 }
-interface MarkedObject{
-  marked:boolean,
-  markColor:string
-}
+
 function getMarkerForCell(rowIndex: number,
                   rowWidth: number,
                   colIndex: number,
-                  markers:any[]): MarkedObject {
+                  markers:any[]): object {
   
 
   if(isNil(markers) || markers.length === 0){
     return {marked:false, markColor:''};
   }
-  for (const mark of markers){
-    if (mark.indexes.includes(rowIndex * rowWidth + colIndex)){
-      return {marked:true, markColor:mark.color};
+  for (const marker of markers){
+    if (marker.indexes.includes(rowIndex * rowWidth + colIndex)){
+      return {marked:true, markColor:marker.color};
     }
   }
   return {marked:false, markColor:''};

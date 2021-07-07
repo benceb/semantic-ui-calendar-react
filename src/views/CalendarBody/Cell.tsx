@@ -16,6 +16,11 @@ export interface CellWidthStyle {
   width: string;
 }
 
+export interface Marker{
+  marked:boolean,
+  markColor:any
+}
+
 export const cellStyleWidth3: CellWidthStyle = {
   width: '33.333333%',
 };
@@ -28,10 +33,7 @@ export const cellStyleWidth7: CellWidthStyle = {
   width: '14.285714%',
 };
 
-export interface MarkedObject{
-  marked:boolean,
-  markColor:any
-}
+
 
 interface CellProps {
   /** Position of a cell on the page. (Used by parent component) */
